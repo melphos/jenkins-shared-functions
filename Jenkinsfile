@@ -2,7 +2,7 @@
  * This pipeline will execute a simple Maven build
  */
 
-podTemplate(label: 'maven', containers: [
+podTemplate(label: 'goss', containers: [
   containerTemplate(name: 'goss', image: 'busybox', ttyEnabled: true, command: 'cat')
   ]) {
 
