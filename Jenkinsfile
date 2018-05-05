@@ -16,4 +16,5 @@ podTemplate(label: 'goss', containers: [
       }
     }
   }
+  deleteDir()
 }
