@@ -11,10 +11,7 @@ podTemplate(cloud: 'kubeLabIvan', label: 'build', containers: [
       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/melphos/jenkins-shared-functions.git']]])
       container('goss') {
           sh 'goss add addr jenkins-ui:8080'
-          sh '''
-            goss add command 'curl http://jenkins-ui:8080/login'
-
-          '''
+          
       }
     }
   }
