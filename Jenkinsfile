@@ -16,9 +16,7 @@ podTemplate(cloud: 'kubeLabIvan', label: 'build', containers: [
           
       }
     }
-  }
-  node('build') {
-      stage('Get a Golang project') {
+    stage('Get a Golang project') {
             git url: 'https://github.com/hashicorp/terraform.git'
             container('golang') {
                 stage('Build a Go project') {
@@ -30,5 +28,6 @@ podTemplate(cloud: 'kubeLabIvan', label: 'build', containers: [
                 }
             }
         }
-  }      
+  }
+  
 }
