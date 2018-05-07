@@ -3,7 +3,8 @@
  */
 
 podTemplate(cloud: 'kubeLabIvan', label: 'build', containers: [
-  containerTemplate(name: 'goss', image: 'aelsabbahy/goss:latest', ttyEnabled: true, command: 'cat')
+  containerTemplate(name: 'goss', image: 'aelsabbahy/goss:latest', ttyEnabled: true, command: 'cat'),
+  containerTemplate(name: 'golang', image: 'golang:1.8.0', ttyEnabled: true, command: 'cat')
   ]) {
 
   node('build') {
@@ -16,4 +17,18 @@ podTemplate(cloud: 'kubeLabIvan', label: 'build', containers: [
       }
     }
   }
+  node('build') {
+      stage('Get a Golang project') {
+            git url: 'https://github.com/hashicorp/terraform.git'
+            container('golang') {
+                stage('Build a Go project') {
+                    sh """
+                    mkdir -p /go/src/github.com/hashicorp
+                    ln -s `pwd` /go/src/github.com/hashicorp/terraform
+                    cd /go/src/github.com/hashicorp/terraform && make core-dev
+                    """
+                }
+            }
+        }
+  }      
 }
