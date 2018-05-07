@@ -15,5 +15,4 @@ podTemplate(cloud: 'kubeLabIvan', label: 'build', containers: [
       }
     }
   }
-  deleteDir()
 }
